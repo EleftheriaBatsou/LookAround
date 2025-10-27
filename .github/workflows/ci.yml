@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  build-and-test:
+  build-test-e2e:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -21,3 +21,9 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
+      - name: Start dev server
+        run: npm run dev &
+      - name: Wait for server
+        run: npx wait-on http://localhost:4200
+      - name: Run Cypress E2E
+        run: npm run e2e

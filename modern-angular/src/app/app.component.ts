@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, MatToolbarModule, MatButtonModule],
   template: `
-    <header class="header">
-      <h1>LookAround (Angular)</h1>
-      <nav>
-        <a routerLink="/" class="link">Home</a>
-      </nav>
-    </header>
+    <mat-toolbar color="primary">
+      <span>LookAround (Angular)</span>
+      <span class="spacer"></span>
+      <a routerLink="/" mat-button>Home</a>
+    </mat-toolbar>
     <main class="content">
       <router-outlet></router-outlet>
     </main>
   `,
   styles: [`
-    .header { padding: 1rem; border-bottom: 1px solid #ddd; }
     .content { padding: 1rem; }
-    .link { margin-right: 1rem; }
+    .spacer { flex: 1 1 auto; }
   `]
 })
 export class AppComponent {}
